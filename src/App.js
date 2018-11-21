@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { observer , inject } from 'mobx-react';
+import IceCreamForm from './js/components/IceCreamForm'
 
-
+@inject("store")
+@observer
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Mobx</h1>
+          <IceCreamForm store={this.props.store} />
         </header>
         <ul>
-          {this.props.store.iceCreams.map((iceCream,i)=><li key={i}>{iceCream.flavor}</li>)}
+          {this.props.store.iceCreams.map((iceCream, i) => <li key={i}>{iceCream.flavor+ " "+iceCream.color}</li>)}
         </ul>
       </div>
     );
